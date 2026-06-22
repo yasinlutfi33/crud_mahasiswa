@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -15,7 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   bool isHidePassword = true;
 
   void login() {
-    if (userController.text == "admin" && passController.text == "123") {
+    if (userController.text == "admin" &&
+        passController.text == "123") {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -26,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Username atau Password Salah"),
+          backgroundColor: Colors.red,
         ),
       );
     }
@@ -38,123 +41,250 @@ class _LoginPageState extends State<LoginPage> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.blue,
-              Colors.lightBlueAccent,
+              Color(0xFF0B3D2E),
+              Color(0xFF145A32),
+              Color(0xFF1E8449),
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: 420,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white.withOpacity(0.08),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.2),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.25),
+                      blurRadius: 25,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const CircleAvatar(
-                        radius: 50,
-                        backgroundColor: Colors.blue,
-                        child: Icon(
-                          Icons.school,
-                          size: 60,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-
-                      const Text(
-                        "LOGIN",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-
-                      const SizedBox(height: 5),
-
-                      const Text(
-                        "Aplikasi Data Mahasiswa",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-
-                      const SizedBox(height: 25),
-
-                      TextField(
-                        controller: userController,
-                        decoration: InputDecoration(
-                          labelText: "Username",
-                          prefixIcon: const Icon(Icons.person),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 15),
-
-                      TextField(
-                        controller: passController,
-                        obscureText: isHidePassword,
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              isHidePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 15,
+                      sigmaY: 15,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(28),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(18),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xFF2ECC71),
+                                  Color(0xFF27AE60),
+                                ],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.greenAccent,
+                                  blurRadius: 20,
+                                ),
+                              ],
                             ),
-                            onPressed: () {
-                              setState(() {
-                                isHidePassword = !isHidePassword;
-                              });
-                            },
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 25),
-
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                            child: const Icon(
+                              Icons.menu_book_rounded,
+                              size: 60,
+                              color: Colors.white,
                             ),
                           ),
-                          onPressed: login,
-                          child: const Text(
-                            "LOGIN",
-                            style: TextStyle(fontSize: 18),
+
+                          const SizedBox(height: 15),
+
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius:
+                                  BorderRadius.circular(20),
+                            ),
+                            child: const Text(
+                              "UNIVERSITY RESEARCH PORTAL",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                letterSpacing: 1.5,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
 
-                      const SizedBox(height: 15),
+                          const SizedBox(height: 18),
 
-                      const Text(
-                        "Masukkan Username dan Password dengan Benar",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey),
+                          const Text(
+                            "SISTEM INFORMASI AKADEMIK",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 2,
+                            ),
+                          ),
+
+                          const SizedBox(height: 8),
+
+                          const Text(
+                            "Portal Data Mahasiswa dan Akademik",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
+                          ),
+
+                          const SizedBox(height: 30),
+
+                          TextField(
+                            controller: userController,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            decoration: InputDecoration(
+                              labelText: "Username",
+                              labelStyle: const TextStyle(
+                                color: Colors.white70,
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Color(0xFF2ECC71),
+                              ),
+                              filled: true,
+                              fillColor:
+                                  Colors.white.withOpacity(0.08),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(15),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 18),
+
+                          TextField(
+                            controller: passController,
+                            obscureText: isHidePassword,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            decoration: InputDecoration(
+                              labelText: "Password",
+                              labelStyle: const TextStyle(
+                                color: Colors.white70,
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                color: Color(0xFF2ECC71),
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  isHidePassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.white70,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    isHidePassword =
+                                        !isHidePassword;
+                                  });
+                                },
+                              ),
+                              filled: true,
+                              fillColor:
+                                  Colors.white.withOpacity(0.08),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(15),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 28),
+
+                          SizedBox(
+                            width: double.infinity,
+                            height: 52,
+                            child: ElevatedButton(
+                              style:
+                                  ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color(0xFF27AE60),
+                                elevation: 10,
+                                shadowColor:
+                                    Colors.greenAccent,
+                                shape:
+                                    RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(
+                                          15),
+                                ),
+                              ),
+                              onPressed: login,
+                              child: const Text(
+                                "LOGIN",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight:
+                                      FontWeight.bold,
+                                  letterSpacing: 2,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          const Divider(
+                            color: Colors.white24,
+                          ),
+
+                          const SizedBox(height: 10),
+
+                          const Text(
+                            "Faculty Information System",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+
+                          const SizedBox(height: 5),
+
+                          const Text(
+                            "Research • Education • Innovation",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white60,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
